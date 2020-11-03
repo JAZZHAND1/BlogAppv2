@@ -24,6 +24,8 @@ const HomeScreen = (props) => {
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
 
+
+
   const loadPosts = async () => {
     setLoading(true);
     firebase
@@ -40,6 +42,11 @@ const HomeScreen = (props) => {
         });
         setPosts(temp_posts);
         setLoading(false);
+        temp_posts.forEach((elem) =>{
+          console.log(elem.id);
+        });
+     
+        
       })
       .catch((error) => {
         setLoading(false);
