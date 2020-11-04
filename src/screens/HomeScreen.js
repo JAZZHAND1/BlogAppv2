@@ -23,9 +23,28 @@ const HomeScreen = (props) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
+  const [like,setlike] =useState(0);
+  const [user,setuser] =useState([]);
+ 
+  const loadlikes = async ()  =>{
+    return(
+      <AuthContext.Consumer>
+      {(auth) => (
+      temp_posts.forEach((elem) =>{
+     // alert(elem.id);
+     alert("auth.CurrentUser123");
+      })
+     )
+     
+     }
+  </AuthContext.Consumer>
+);
+ 
 
-
-
+};
+const load = async ()  => {
+  alert("auth.CurrentUser");
+};
   const loadPosts = async () => {
     setLoading(true);
     firebase
@@ -42,10 +61,7 @@ const HomeScreen = (props) => {
         });
         setPosts(temp_posts);
         setLoading(false);
-        temp_posts.forEach((elem) =>{
-          console.log(elem.id);
-        });
-     
+        alert(posts);
         
       })
       .catch((error) => {
@@ -56,6 +72,8 @@ const HomeScreen = (props) => {
 
   useEffect(() => {
     loadPosts();
+    loadlikes();
+    load();
   }, []);
 
   return (
@@ -88,7 +106,7 @@ const HomeScreen = (props) => {
                     body: input,
                     author: auth.CurrentUser.displayName,
                     created_at: firebase.firestore.Timestamp.now(),
-                    likes: [],
+                    likes: 0,
                     comments: [],
                   })
                   .then(() => {
@@ -112,6 +130,7 @@ const HomeScreen = (props) => {
                   author={item.data.author}
                   title={item.id}
                   body={item.data.body}
+                  like={item.data.likes}
                 />
               );
             }}
