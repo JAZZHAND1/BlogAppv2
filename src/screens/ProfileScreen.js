@@ -22,7 +22,7 @@ const ProfileScreen = (props) => {
           <Card>
             <View style={{ alignItems: "center" }}>
               <Image
-                source={require("../../assets/profile.jpg")}
+                source={require("../../assets/profile.PNG")}
                 style={styles.imageStyle}
               />
               <Text style={{ fontSize: 32 }}>

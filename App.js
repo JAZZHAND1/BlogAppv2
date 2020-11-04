@@ -4,7 +4,11 @@ import AuthStackScreen from "./src/navigation/AuthStack";
 import AppDrawerScreen from "./src/navigation/AppDrawer";
 import { AuthContext, AuthProvider } from "./src/providers/AuthProvider";
 import * as firebase from "firebase";
-
+import { createStackNavigator } from "@react-navigation/stack";
+import HomeScreen from "./src/screens/HomeScreen";
+import commentscreen from "./src/screens/commentscreen";
+import PostCard from "./src/components/PostCard";
+const PostStack =createStackNavigator();
 const firebaseConfig = {
   apiKey: "AIzaSyC3_uJUDFSQ6gWovjLjxbgRcd2LXUJPBQk",
   authDomain: "blogapplication-57487.firebaseapp.com",
@@ -19,6 +23,27 @@ const firebaseConfig = {
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
+const PostStackScreen = () => {
+  return (
+    <PostStack.Navigator initialRouteName="HomeScreen">
+      <PostStack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+      <PostStack.Screen
+        name="commentscreen"
+        component={commentscreen}
+        options={{ headerShown: false }}
+      />
+       <PostStack.Screen
+        name="postcard"
+        component={PostCard}
+        options={{ headerShown: false }}
+      />
+    </PostStack.Navigator>
+  );
+};
 
 
 function App() {
