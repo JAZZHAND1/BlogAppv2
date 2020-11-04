@@ -26,25 +26,7 @@ const HomeScreen = (props) => {
   const [like,setlike] =useState(0);
   const [user,setuser] =useState([]);
  
-  const loadlikes = async ()  =>{
-    return(
-      <AuthContext.Consumer>
-      {(auth) => (
-      temp_posts.forEach((elem) =>{
-     // alert(elem.id);
-     alert("auth.CurrentUser123");
-      })
-     )
-     
-     }
-  </AuthContext.Consumer>
-);
- 
 
-};
-const load = async ()  => {
-  alert("auth.CurrentUser");
-};
   const loadPosts = async () => {
     setLoading(true);
     firebase
@@ -72,8 +54,6 @@ const load = async ()  => {
 
   useEffect(() => {
     loadPosts();
-    loadlikes();
-    load();
   }, []);
 
   return (
