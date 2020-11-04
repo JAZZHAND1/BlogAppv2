@@ -111,6 +111,7 @@ const HomeScreen = (props) => {
                   title={item.id}
                   body={item.data.body}
                   like={item.data.likes}
+                  id ={item.id}
                 />
               );
             }}

@@ -2,7 +2,8 @@ import React,{useState} from "react";
 import { View } from "react-native";
 import { Card, Button, Text, Avatar } from "react-native-elements";
 import { AntDesign } from "@expo/vector-icons";
-
+import * as firebase from "firebase";
+import "firebase/firestore";
 
 const PostCard = (props) => {
   const [like,setlike] = useState(props.like);
@@ -36,8 +37,16 @@ const PostCard = (props) => {
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Button
           type="outline"
-          onPress = {function(){
+          onPress = {function (){
               setlike(like+1);
+             const db = firebase.firestore()
+             db.collection("posts").doc(props.id).update({likes:like}).then(()=>{
+            
+            }
+            ).catch((error) =>{
+
+            });
+              
           }}
           title={"Like("+like+")"}
           icon={<AntDesign name="like2" size={24} color="dodgerblue" />}
