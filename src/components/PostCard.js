@@ -59,7 +59,10 @@ const PostCard = (props) => {
         />
         <Button type="solid" title="Comment" onPress ={function(){
           console.log(props.id);
-           auth.setclickedpost="Haha"+props.id;
+           auth.setclickedpost=props.id;
+           auth.setpostbody=props.body;
+           auth.setposter=props.author;
+           auth.like=props.like;
          props.f.navigate("commentscreen");
         }} />
       </View>
