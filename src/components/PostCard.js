@@ -6,8 +6,9 @@ import * as firebase from "firebase";
 import "firebase/firestore";
 import { AuthContext } from "../providers/AuthProvider";
 
+
 const PostCard = (props) => {
-  const [like,setlike] = useState(props.like);
+  const [like,setlike] = useState();
   return (
     <AuthContext.Consumer>
     {(auth) => (
@@ -38,13 +39,14 @@ const PostCard = (props) => {
         {props.body}
       </Text>
       <Card.Divider />
+      {setlike(props.like)}
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Button
           type="outline"
           onPress = {function (){
               setlike(like+1);
              const db = firebase.firestore()
-             db.collection("posts").doc(props.id).update({likes:like}).then(()=>{
+             db.collection("posts").doc(props.id).update({likes:like+1}).then(()=>{
             
             }
             ).catch((error) =>{
@@ -56,8 +58,8 @@ const PostCard = (props) => {
           icon={<AntDesign name="like2" size={24} color="dodgerblue" />}
         />
         <Button type="solid" title="Comment" onPress ={function(){
-         // console.log(props.g);
-           auth.setclickedpost="Haha";
+          console.log(props.id);
+           auth.setclickedpost="Haha"+props.id;
          props.f.navigate("commentscreen");
         }} />
       </View>
