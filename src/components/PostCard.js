@@ -58,11 +58,12 @@ const PostCard = (props) => {
           icon={<AntDesign name="like2" size={24} color="dodgerblue" />}
         />
         <Button type="solid" title="Comment" onPress ={function(){
-          console.log(props.id);
-           auth.setclickedpost=props.id;
-           auth.setpostbody=props.body;
-           auth.setposter=props.author;
-           auth.like=props.like;
+        //  console.log(props.id);
+           auth.setclickedpost(props.id);
+           auth.setpostbody(props.body);
+           auth.setpostname(props.title)
+           auth.setpostername(props.author);
+           auth.setlike(props.like);
          props.f.navigate("commentscreen");
         }} />
       </View>

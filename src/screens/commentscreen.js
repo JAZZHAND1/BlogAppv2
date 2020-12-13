@@ -64,40 +64,19 @@ const commentscreen = (props) => {
                   props.navigation.toggleDrawer();
                 }}
               />
+             {console.log(auth)
+             }
+             <PostCard 
+                 author={auth.postername}
+                 title={auth.postname}
+                 body={auth.postbody}
+                 like={auth.like}
+                 id ={auth.clickedpost}
+                 f ={props.navigation} 
+                   
+             />
               <Card>
-                <Input
-                  placeholder="What's On Your Mind?"
-                  leftIcon={<Entypo name="pencil" size={24} color="black" />}
-                  onChangeText={(currentText) => {
-                    setInput(currentText);
-                  }}
-                />
-                <Button
-                  title="Post"
-                  type="outline"
-                  onPress={function () {
-                    setLoading(true);
-                    firebase
-                      .firestore()
-                      .collection("posts")
-                      .add({
-                        userId: auth.CurrentUser.uid,
-                        body: input,
-                        author: auth.CurrentUser.displayName,
-                        created_at: firebase.firestore.Timestamp.now(),
-                        likes: 0,
-                        comments: [],
-                      })
-                      .then(() => {
-                        setLoading(false);
-                        alert("Post created Successfully!");
-                      })
-                      .catch((error) => {
-                        setLoading(false);
-                        alert(error);
-                      });
-                  }}
-                />
+              
               </Card>
               <ActivityIndicator size="large" color="red" animating={loading} />
               <FlatList
