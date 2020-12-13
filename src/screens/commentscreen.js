@@ -22,9 +22,9 @@ const commentscreen = (props) => {
     const [input, setInput] = useState("");
     const [like,setlike] =useState(0);
     const [user,setuser] =useState([]);
-    console.log(props);
 
     const loadPosts = async () => {
+    
         setLoading(true);
         firebase
           .firestore()
@@ -100,7 +100,7 @@ const commentscreen = (props) => {
                 />
               </Card>
               <ActivityIndicator size="large" color="red" animating={loading} />
-    
+              {console.log(auth)} 
               <FlatList
                 data={posts}
                 renderItem={({ item }) => {
@@ -111,12 +111,14 @@ const commentscreen = (props) => {
                       body={item.data.body}
                       like={item.data.likes}
                       id ={item.id}
+                    
                     />
                   );
                 }}
               />
             </View>
           )}
+
         </AuthContext.Consumer>
       );
     };

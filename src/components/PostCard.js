@@ -4,10 +4,14 @@ import { Card, Button, Text, Avatar } from "react-native-elements";
 import { AntDesign } from "@expo/vector-icons";
 import * as firebase from "firebase";
 import "firebase/firestore";
+import { AuthContext } from "../providers/AuthProvider";
 
 const PostCard = (props) => {
   const [like,setlike] = useState(props.like);
   return (
+    <AuthContext.Consumer>
+    {(auth) => (
+    
     <Card>
       <View
         style={{
@@ -52,11 +56,14 @@ const PostCard = (props) => {
           icon={<AntDesign name="like2" size={24} color="dodgerblue" />}
         />
         <Button type="solid" title="Comment" onPress ={function(){
-        //  console.log(props);
+         // console.log(props.g);
+           auth.setclickedpost="Haha";
          props.f.navigate("commentscreen");
         }} />
       </View>
     </Card>
+     )}
+  </AuthContext.Consumer>
   );
 };
 

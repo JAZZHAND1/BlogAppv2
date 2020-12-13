@@ -5,7 +5,7 @@ const AuthContext = React.createContext();
 const AuthProvider = (props) => {
   const [CurrentUser, setCurrentUser] = useState({});
   const [IsLoggedIn, setIsLoggedIn] = useState(false);
-
+  const[clickedpost,setclickedpost] = useState("");
   return (
     <AuthContext.Provider
       value={{
@@ -13,6 +13,8 @@ const AuthProvider = (props) => {
         setCurrentUser: setCurrentUser,
         IsLoggedIn: IsLoggedIn,
         setIsLoggedIn: setIsLoggedIn,
+        clickedpost:clickedpost,
+        setclickedpost:setclickedpost,
       }}
     >
       {props.children}

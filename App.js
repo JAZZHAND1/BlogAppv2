@@ -8,6 +8,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./src/screens/HomeScreen";
 import commentscreen from "./src/screens/commentscreen";
 import PostCard from "./src/components/PostCard";
+import {postprovider,PostContext} from "./src/providers/PostProvider";
 const PostStack =createStackNavigator();
 const firebaseConfig = {
   apiKey: "AIzaSyC3_uJUDFSQ6gWovjLjxbgRcd2LXUJPBQk",
