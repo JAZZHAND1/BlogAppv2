@@ -17,6 +17,7 @@ const AuthStackScreen = () => {
         component={SignUpScreen}
         options={{ headerShown: false }}
       />
+
     </AuthStack.Navigator>
   );
 };

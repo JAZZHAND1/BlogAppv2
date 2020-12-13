@@ -112,6 +112,7 @@ const HomeScreen = (props) => {
                   body={item.data.body}
                   like={item.data.likes}
                   id ={item.id}
+                  f ={props.navigation}                      
                 />
               );
             }}

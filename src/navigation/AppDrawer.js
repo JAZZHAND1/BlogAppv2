@@ -10,6 +10,8 @@ const AppDrawerScreen = () => {
     <AppDrawer.Navigator>
       <AppDrawer.Screen name="Home" component={HomeTabScreen} />
       <AppDrawer.Screen name="Profile" component={ProfileScreen} />
+      <AppDrawer.Screen name="commentscreen" component={commentscreen} />
+
     </AppDrawer.Navigator>
   );
 };

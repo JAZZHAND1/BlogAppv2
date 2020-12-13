@@ -22,7 +22,7 @@ const commentscreen = (props) => {
     const [input, setInput] = useState("");
     const [like,setlike] =useState(0);
     const [user,setuser] =useState([]);
-
+    console.log(props);
 
     const loadPosts = async () => {
         setLoading(true);

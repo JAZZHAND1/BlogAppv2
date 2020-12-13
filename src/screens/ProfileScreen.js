@@ -39,7 +39,7 @@ const ProfileScreen = (props) => {
               icon={<AntDesign name="deleteuser" size={12} color="white" />}
               onPress={async () => {
               //  console.log(auth.CurrentUser.id);
-                alert(JSON.stringify (auth.CurrentUser.uid));
+                alert(JSON.stringify(auth.CurrentUser.uid));
                 firebase.auth().currentUser.delete()
                 const db =  firebase.firestore()
                 const cityRef = db.collection('users').doc(auth.CurrentUser.uid).delete();
