@@ -5,6 +5,7 @@ import { AntDesign } from "@expo/vector-icons";
 import * as firebase from "firebase";
 import "firebase/firestore";
 import { AuthContext } from "../providers/AuthProvider";
+import { NavigationContainer } from "@react-navigation/native";
 
 
 const PostCard = (props) => {
@@ -58,7 +59,7 @@ const PostCard = (props) => {
           icon={<AntDesign name="like2" size={24} color="dodgerblue" />}
         />
         <Button type="solid" title="Comment" onPress ={function(){
-        //  console.log(props.id);
+          console.log(props.f);
            auth.setclickedpost(props.id);
            auth.setpostbody(props.body);
            auth.setpostname(props.title)
