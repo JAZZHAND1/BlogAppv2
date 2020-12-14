@@ -40,7 +40,7 @@ const SignInScreen = (props) => {
 
               <Button
                 icon={<AntDesign name="login" size={24} color="white" />}
-                title="  Sign In!"
+                title="Sign In!"
                 type="solid"
                 onPress={() => {
                   setIsLoading(true);
@@ -61,7 +61,7 @@ const SignInScreen = (props) => {
               <Button
                 type="clear"
                 icon={<AntDesign name="user" size={24} color="dodgerblue" />}
-                title="  Don't have an account?"
+                title="Don't have an account?"
                 onPress={function () {
                   props.navigation.navigate("SignUp");
                 }}

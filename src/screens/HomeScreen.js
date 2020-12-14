@@ -25,6 +25,7 @@ const HomeScreen = (props) => {
   const [input, setInput] = useState("");
   const [like,setlike] =useState(0);
   const [user,setuser] =useState([]);
+  const[success,setsuccess] =useState(0);
  
 
   const loadPosts = async () => {
@@ -78,7 +79,7 @@ const HomeScreen = (props) => {
               type="outline"
               onPress={function () {
                 setLoading(true);
-                firebase
+                 firebase
                   .firestore()
                   .collection("posts")
                   .add({
@@ -92,12 +93,16 @@ const HomeScreen = (props) => {
                   .then(() => {
                     setLoading(false);
                     alert("Post created Successfully!");
+                    setsuccess(1);
                   })
                   .catch((error) => {
                     setLoading(false);
                     alert(error);
                   });
-              }}
+                  
+              }
+              
+            }
             />
           </Card>
           <ActivityIndicator size="large" color="red" animating={loading} />
