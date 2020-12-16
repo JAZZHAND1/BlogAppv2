@@ -48,6 +48,23 @@ const PostCard = (props) => {
               setlike(like+1);
              const db = firebase.firestore()
              db.collection("posts").doc(props.id).update({likes:like+1}).then(()=>{
+               
+            const db=  firebase
+              .firestore()
+              .collection("posts").doc(props.id);
+              let alllikers=[];
+            const doc =db.get().then((doc)=>{
+              let temp = doc.data().likers; 
+              temp.forEach(element => {
+                console.log(element);
+                alllikers.push(element);
+              });
+              console.log(alllikers);
+              alllikers.push(auth.CurrentUser.displayName); 
+            firebase.firestore().collection("posts").doc(props.id).update({likers:alllikers});
+            
+            })
+            
             
             }
             ).catch((error) =>{

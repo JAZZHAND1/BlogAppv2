@@ -88,6 +88,7 @@ const HomeScreen = (props) => {
                     author: auth.CurrentUser.displayName,
                     created_at: firebase.firestore.Timestamp.now(),
                     likes: 0,
+                    likers:[],
                     comments: [],
                   })
                   .then(() => {
@@ -119,7 +120,7 @@ const HomeScreen = (props) => {
           
           </Card>
           <ActivityIndicator size="large" color="red" animating={loading} />
-
+           
           <FlatList
             data={posts}
             renderItem={({ item }) => {
