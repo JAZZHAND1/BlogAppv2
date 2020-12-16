@@ -24,35 +24,17 @@ const commentscreen = (props) => {
     const [user,setuser] =useState([]);
     const [comment,setcomment] =  useState("");
     const [commenter,setcommenter] =useState();
+    const [allcomments,setallcomments] =useState([]);
+
     const loadPosts = async () => {
-    
-        setLoading(true);
-        firebase
-          .firestore()
-          .collection("posts")
-          .onSnapshot((querySnapshot) => {
-            let temp_posts = [];
-            querySnapshot.forEach((doc) => {
-              if(doc.id===props.id){
-                temp_posts.push({
-                id: doc.id,
-                data: doc.data(),
-                });
-              }
-                
-            });
-            setPosts(temp_posts);
-            setLoading(false);
-            alert(posts);
-            
-          })
-          .catch((error) => {
-            setLoading(false);
-            alert(error);
-          });
-      };
+   
+    };
+  
+
+   {console.log(props);}
       useEffect(() => {
         loadPosts();
+      // loadcomments();
       }, []);
  
 
@@ -65,7 +47,9 @@ const commentscreen = (props) => {
                   props.navigation.toggleDrawer();
                 }}
               />
-             {console.log(auth.CurrentUser.displayName)
+             {        
+                
+               
              }
              <PostCard 
                  author={auth.postername}
@@ -88,29 +72,49 @@ const commentscreen = (props) => {
               title="Comment"
               type="outline"
               onPress={function (){
+                let allcomments =[];
+                let temp =[];
+                firebase
+                .firestore()
+                .collection("posts").doc(auth.clickedpost).get().then((doc)=>{
+                 temp= doc.data().comments;
+                 temp.forEach(element => {
+                   console.log(element);
+                   allcomments.push(element);
+                 });
+                 let object={comment:comment,commenter:auth.CurrentUser.displayName};
+                 allcomments.push(object);
+                // console.log(allcomments);
+                 setallcomments(allcomments);
+                 firebase.firestore().collection("posts").doc(auth.clickedpost).update({comments:allcomments});
+                 
+                })
+
+
               //  setcommenter();
                // console.log(auth.CurrentUser.displayName);
               //  console.log(auth.clickedpost);
-                let object={commenter:auth.CurrentUser.displayName, comment:comment};
-                console.log(JSON.stringify(object));
-                firebase.firestore().collection("posts").doc(auth.clickedpost).update({comments:object});
+                
+               // console.log(JSON.stringify(object));
+               // 
 
               }
             }
             />    
          </Card>
+        { console.log(allcomments)}
 
               <ActivityIndicator size="large" color="red" animating={loading} />
               <FlatList
-                data={posts}
+                data={allcomments}
                 renderItem={({ item }) => {
                   return (
                     <PostCard
-                      author={item.data.author}
-                      title={item.id}
-                      body={item.data.body}
-                      like={item.data.likes}
-                      id ={item.id}
+                      author={item.commenter}
+                    //  title={item.id}
+                      body={item.comment}
+                   //   like={item.data.likes}
+                    //  id ={item.id}
                     
                     />
                   );

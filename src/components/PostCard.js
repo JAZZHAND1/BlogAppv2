@@ -66,6 +66,7 @@ const PostCard = (props) => {
            auth.setpostername(props.author);
            auth.setlike(props.like);
          props.f.navigate("commentscreen");
+         
         }} />
       </View>
     </Card>
