@@ -22,7 +22,8 @@ const commentscreen = (props) => {
     const [input, setInput] = useState("");
     const [like,setlike] =useState(0);
     const [user,setuser] =useState([]);
-    
+    const [comment,setcomment] =  useState("");
+    const [commenter,setcommenter] =useState();
     const loadPosts = async () => {
     
         setLoading(true);
@@ -64,7 +65,7 @@ const commentscreen = (props) => {
                   props.navigation.toggleDrawer();
                 }}
               />
-             {console.log(auth)
+             {console.log(auth.CurrentUser.displayName)
              }
              <PostCard 
                  author={auth.postername}
@@ -75,9 +76,30 @@ const commentscreen = (props) => {
                  f ={props.navigation} 
                    
              />
-              <Card>
-              
-              </Card>
+           <Card>
+            <Input
+              placeholder="Comment what you think?"
+              leftIcon={<Entypo name="pencil" size={24} color="black" />}
+              onChangeText={(currentText) => {
+                setcomment(currentText);
+              }}
+            />
+            <Button
+              title="Comment"
+              type="outline"
+              onPress={function (){
+              //  setcommenter();
+               // console.log(auth.CurrentUser.displayName);
+              //  console.log(auth.clickedpost);
+                let object={commenter:auth.CurrentUser.displayName, comment:comment};
+                console.log(JSON.stringify(object));
+                firebase.firestore().collection("posts").doc(auth.clickedpost).update({comments:object});
+
+              }
+            }
+            />    
+         </Card>
+
               <ActivityIndicator size="large" color="red" animating={loading} />
               <FlatList
                 data={posts}
