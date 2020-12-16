@@ -113,7 +113,7 @@ const commentscreen = (props) => {
                       author={item.commenter}
                     //  title={item.id}
                       body={item.comment}
-                   //   like={item.data.likes}
+                      like={0}
                     //  id ={item.id}
                     
                     />
